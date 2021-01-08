@@ -16,10 +16,7 @@ docker run -d --name covid19 \
 -e MYSQL_DATABASE=covid19 \
 mariadb
 
-# 
-#data,stato,codice_regione,denominazione_regione,lat,long,ricoverati_con_sintomi,terapia_intensiva,totale_ospedalizzati,isolamento_domiciliare,totale_positivi,variazione_totale_positivi,nuovi_positivi,dimessi_guariti,deceduti,casi_da_sospetto_diagnostico,casi_da_screening,totale_casi,tamponi,casi_testati,note,ingressi_terapia_intensiva,note_test,note_casi
 
 # Pulisco la cartella git-temp
 #rm -rf git-temp/*
 
-docker 
