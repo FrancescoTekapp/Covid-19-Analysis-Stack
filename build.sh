@@ -2,21 +2,14 @@
 
 # Scarico i CSV
 
-#git clone https://github.com/pcm-dpc/COVID-19.git git-temp/
-rm -rf git-temp/.git
-docker stop covid19 && docker rm covid19
+docker stop covid-19-stack && docker rm covid-19-stack
+docker stop covid-19-client && docker rm covid-19-client
+
+mkdir -p $pwd/clickhouse_data
+
+docker run -d -p 8123:8123 --name covid-19-stack --ulimit nofile=262144:262144 --volume='clickhouse_data':/var/lib/clickhouse yandex/clickhouse-server
+
+docker run --rm --link covid-19-stack:clickhouse-server --name covid-19-client yandex/clickhouse-client --host clickhouse-server
 
 
-docker run -d --name covid19 \
--p 11200:3306 \
--v "/$(pwd)/mariadb/data":/var/lib/mysql \
--e MYSQL_ROOT_PASSWORD=Tekapp2021 \
--e MYSQL_USER=covid19 \
--e MYSQL_PASSWORD=covid19 \
--e MYSQL_DATABASE=covid19 \
-mariadb
-
-
-# Pulisco la cartella git-temp
-#rm -rf git-temp/*
 
