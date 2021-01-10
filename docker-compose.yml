@@ -14,4 +14,13 @@ services:
        soft: 262144
        hard: 262144
     
-    
+    mindsdb:
+      image: mindsdb/mindsdb
+      ports:
+      - 47334:47334
+      - 47335:47335
+      - 47336:47336
+
+
+
+
