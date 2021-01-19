@@ -1,6 +1,6 @@
 # Covid-19 Analysis Stack
 
-Sviluppo ambiente analisi flessibile e veloce per analisi Covid-19 (Dati su malattia e distribuzione / erogazione vaccini)
+Covid-19 Analysis Stack è un ambiente di sviluppo per effettuare analisi flessibili e veloci sull'epidemia Covid-19 (Dati su malattia e distribuzione / erogazione vaccini)
 
 Database: ClickHouse
 
