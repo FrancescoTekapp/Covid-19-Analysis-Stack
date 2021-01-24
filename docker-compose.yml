@@ -32,7 +32,7 @@ services:
       links:
         - postgres
       volumes:
-        - ~/.n8n:/home/node/.n8n
+        - ./.n8n:/home/node/.n8n
         - ./pg_data_n8n:/var/lib/postgresql/data  
       # Wait 5 seconds to start n8n to make sure that PostgreSQL is ready
       # when n8n tries to connect to it

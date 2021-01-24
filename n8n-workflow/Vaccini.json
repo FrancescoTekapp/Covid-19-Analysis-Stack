@@ -1,0 +1,117 @@
+{
+  "name": "Vaccini",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.start",
+      "typeVersion": 1,
+      "position": [
+        150,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/anagrafica-vaccini-summary-latest.csv",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "name": "anagrafica-vaccini-summary-latest",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        460,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "name": "JSON",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "position": [
+        680,
+        240
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "TRUNCATE TABLE anagrafica_vaccini;"
+      },
+      "name": "Tronco la tabella",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [
+        300,
+        100
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "postgres": "PG_Data"
+      }
+    },
+    {
+      "parameters": {
+        "table": "anagrafica_vaccini",
+        "columns": "fascia_anagrafica, totale, sesso_maschile, sesso_femminile, categoria_operatori_sanitari_sociosanitari, categoria_personale_non_sanitario, categoria_ospiti_rsa, ultimo_aggiornamento\n\n\n"
+      },
+      "name": "Inserisci le righe",
+      "type": "n8n-nodes-base.postgres",
+      "position": [
+        860,
+        240
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "postgres": "PG_Data"
+      }
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Tronco la tabella",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "anagrafica-vaccini-summary-latest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "anagrafica-vaccini-summary-latest": {
+      "main": [
+        [
+          {
+            "node": "JSON",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "JSON": {
+      "main": [
+        [
+          {
+            "node": "Inserisci le righe",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "1"
+}
