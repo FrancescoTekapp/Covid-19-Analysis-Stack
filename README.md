@@ -23,3 +23,6 @@ chmod a+x build.sh
     - Importare in maniera automatica i CSV dalla repo -> https://github.com/italia/covid19-opendata-vaccini
     - Importare in maniera automatica i CSV della repo -> https://github.com/pcm-dpc/COVID-19
     
+## TEST
+
+![CI-Test-Compose](https://github.com/Tekapp-SRL/Covid-19-Analysis-Stack/workflows/CI-Test-Compose/badge.svg)
