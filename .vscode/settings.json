@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "COVID19_Analysis Stack",
+            "database": "n8n",
+            "username": "changeUser",
+            "password": "changePassword"
+        }
+    ]
+}
